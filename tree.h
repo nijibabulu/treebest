@@ -10,6 +10,7 @@
 #define COMPARE_WRITE_INTERNAL_NAME 0x0001
 #define COMPARE_WRITE_BRANCH_LENGTH 0x0002
 #define COMPARE_WRITE_BS_VALUE 0x0004
+#define COMPARE_WRITE_TREE_INDEX 0x0008
 
 #define spec(p) (((SDIinfo*)(p)->ptr)->ptr)
 #define SDIptr(p) ((SDIinfo*)(p)->ptr)
@@ -36,6 +37,9 @@ typedef struct __lih_Tree
 
 	int n_node;
 	struct __lih_Tree **node_array; /** used on special conditions, do not touch this!!! */
+
+	int tree_index;
+
 } Tree;
 
 typedef Tree *TreePtr;
@@ -109,6 +113,7 @@ typedef struct
 	char **sub_name; /* gene names in `list' */
 	Tree *subtree; /* cut tree, a pointer to a subtree of *tree */
 	char *cut; /* outgroup species */
+	int copy_tree_index;
 } Task;
 
 #ifdef __cplusplus
@@ -176,9 +181,9 @@ Ortholog *tr_ortho(Tree *root, const Tree *spec, int is_pseudo);
 /* compare bootstrapped ortholog relationship and the original ortholog */
 void tr_comp_ortho(Ortholog *ori, const Ortholog *bs);
 
-Tree *tr_trim_poor_leaves(const Tree *tree, Tree *spec, int thres);
-
 Tree *tr_mmerge(int n, Tree **forest);
+
+Tree *tr_trim_poor_leaves(const Tree *tree, Tree *spec, int thres);
 
 /* memory handler */
 Tree *tr_new_node();
