@@ -14,6 +14,10 @@
 #define spec(p) (((SDIinfo*)(p)->ptr)->ptr)
 #define SDIptr(p) ((SDIinfo*)(p)->ptr)
 
+
+/* nhx, n, bs, d, node, pre */
+/* nhx by cpp_insert_keyval(Tree *node, const char *key, const char *val) */
+
 /**
  * structure of a node
  */
@@ -87,7 +91,7 @@ typedef struct
 	int is_collapse; /* collapse alternative splicing */
 	int is_mask; /* whether applying alignment mask */
 	int is_mask_segment;
-	 int is_pseudo_ortho;
+	int is_pseudo_ortho;
 	int is_strong_con; /* if true, tree will not be rebuilt. */
 	struct __lih_MultiAlign *aln; /* multialignment */
 	unsigned out_flag; /* output format */

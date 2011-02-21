@@ -116,8 +116,11 @@ Ortholog *tr_ortho(Tree *tree, const Tree *spec, int is_pseudo)
 	tr_expand_leaf_by_id(tree, tree_leaf);
 	tr_ortho_aux(tree, is_pseudo); /* set Tree::flag */
 
+        /* foreach leaf */
 	for (i = 0; i < n_tree_leaf; ++i) {
+                /* leaf taxon needs to be in the species tree */
 		if (spec(tree_leaf[i]) == 0) continue;
+                /* foreach other leaf */
 		for (j = 0; j < i; ++j) { /* here is O(N^2) */
 			if (spec(tree_leaf[j]) == 0) continue;
 			p = tree_leaf[i];

@@ -416,14 +416,27 @@ int tr_ortho_task(int argc, char *argv[])
 {
 	extern Tree *tr_default_spec_tree();
 	Tree **root, *spec_tree;
-	FILE *fp;
-	int i, n;
+	FILE *fp; FILE *fp_spec;
+	int i, n, c;
 	Ortholog *ortho;
 
+	spec_tree = 0;
 	if (argc == 1) return tr_ortho_usage();
 	fp = tr_get_fp(argv[1]);
 	root = tr_parse(fp, &n);
-	spec_tree = tr_default_spec_tree();
+
+	while ((c = getopt(argc, argv, "cRrHm:f:s:")) >= 0) {
+	  switch (c) {
+	  case 'f': fp_spec = tr_get_fp(optarg);
+	    if (fp_spec) {
+	      spec_tree = tr_parse_first(fp_spec);
+	      fclose(fp_spec);
+	      cpp_post_spec_tree(spec_tree, 0);
+	    }
+	    break;
+	  }
+	}
+	if (spec_tree == 0) spec_tree = tr_default_spec_tree();
 	for (i = 0; i < n; ++i) {
 		tr_SDI(root[i], spec_tree, 0);
 		ortho = tr_ortho(root[i], spec_tree, 1);
