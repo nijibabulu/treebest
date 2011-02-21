@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
+#include <getopt.h>
 #include "align.h"
 #include "utils.h"
 #include "align_lib/align.h"
