@@ -691,7 +691,7 @@ int tr_distmat_task(int argc, char *argv[])
 	} else {
 		Matrix *mat_ds;
 		int i, j;
-		float *p_dn, *p_ds;
+		double *p_dn, *p_ds;
 
 		/* calculate dn */
 		dp = ma_alloc_DistParam(DIST_DN);

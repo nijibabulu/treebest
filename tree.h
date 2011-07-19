@@ -33,7 +33,7 @@ typedef struct __lih_Tree
 	char is_cons; /**< Is this node constrained in Neighbour-Joining? This should be modified ONLY in tr_nj(). */
 	int id, flag; /**< "id" should not be changed once it is assigned for the first time. */
 	int ftime, n_leaf; /**< finish time and number of leaves under this node */
-	float d; /**< distance */
+	double d; /**< distance */
 	struct __lih_Tree **node, *pre; /**< children and parent */
 
 	int n_node;
@@ -50,7 +50,7 @@ typedef struct
 {
 	int count; /**< number of sequences */
 	char **name; /**< name of the sequences */
-	float *dist; /**< symmetric count*count distance matrix */
+	double *dist; /**< symmetric count*count distance matrix */
 } Matrix;
 
 /** structure of SDI information */
@@ -96,14 +96,14 @@ typedef struct
 	int is_collapse; /* collapse alternative splicing */
 	int is_mask; /* whether applying alignment mask */
 	int is_mask_segment;
-	int is_pseudo_ortho;
+	 int is_pseudo_ortho;
 	int is_strong_con; /* if true, tree will not be rebuilt. */
 	struct __lih_MultiAlign *aln; /* multialignment */
 	unsigned out_flag; /* output format */
 
 	int time_limit; /* time limit: control the number of bootstrap times. Unit: seconds */
 	int real_bs_time; /* the bootstrap times that are actually carried on in the specified time */
-	int (*func)(float);
+	int (*func)(double);
 	int is_aln; /* input format. non-zero for ALN, otherwise MFA */
 	int init_cons; /* whether constraints should be applied to the root node */
 
@@ -152,11 +152,11 @@ Tree *tr_cut_tree(Tree *tree, const Tree *spec, int m, char **ingroup, const cha
 /* root a tree by minimizing tree height */
 Tree *tr_root_by_min_height(Tree *root);
 /* reroot a tree `root', using `node' as the root. `dist' is used to assign branch length */
-Tree *tr_reroot(Tree *root, Tree *node, float dist);
+Tree *tr_reroot(Tree *root, Tree *node, double dist);
 /* not tested! */
 Tree *tr_remove_root(Tree *root);
 /* adjust the branch length of the two root branches */
-float tr_slide_binary_root(Tree *root);
+double tr_slide_binary_root(Tree *root);
 /* root a tree `root' by minimizing the number of duplication events */
 Tree *tr_root_by_sdi(Tree *root, Tree *spec);
 Tree *tr_root_by_sdi_fast(Tree *root, Tree *spec);

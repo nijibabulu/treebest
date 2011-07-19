@@ -28,8 +28,8 @@ typedef struct
 
 	/* PHYML related, passed to PhymlConfig */
 	int n_cat;
-	float kappa;
-	float alpha;
+	double kappa;
+	double alpha;
 	double prob_dup;
 	double prob_loss_dup;
 	double prob_loss_spec;

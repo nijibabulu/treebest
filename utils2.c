@@ -88,10 +88,10 @@ Tree *tr_copy_tree(const Tree *root)
 /*
  * calculate the height of the tree
  */
-float tr_tree_height(const Tree *root)
+double tr_tree_height(const Tree *root)
 {
 	int m, i, j;
-	float *d, h, max;
+	double *d, h, max;
 	Tree *p, **node;
 	int *stack, *top;
 
@@ -99,7 +99,7 @@ float tr_tree_height(const Tree *root)
 	node = tr_stack(root, Tree*);
 	m = tr_expand_node(root, node);
 	top = stack = tr_stack(root, int);
-	d = tr_stack(root, float);
+	d = tr_stack(root, double);
 	for (i = 0; i < m; ++i) d[i] = 0.0;
 	for (i = 0; i < m; ++i) {
 		p = node[i];
@@ -124,9 +124,9 @@ float tr_tree_height(const Tree *root)
 /*
  * slide the root node
  */
-float tr_slide_binary_root(Tree *root)
+double tr_slide_binary_root(Tree *root)
 {
-	float t, t0, t1, h;
+	double t, t0, t1, h;
 	if (root->n != 2) return -1.0;
 	t0 = tr_tree_height(root->node[0]);
 	t1 = tr_tree_height(root->node[1]);
@@ -160,7 +160,7 @@ float tr_slide_binary_root(Tree *root)
 Tree *tr_root_by_sdi(Tree *root, Tree *spec)
 {
 	int m, i, min, min_i, min_dup;
-	float min_h;
+	double min_h;
 	Tree **node, **links, *p;
 	extern void tr_sdi_set_dup_bound(int);
 
@@ -176,7 +176,7 @@ Tree *tr_root_by_sdi(Tree *root, Tree *spec)
 
 	for (i = 0; i < root->ftime; ++i) {
 		Tree *new_tree;
-		float h;
+		double h;
 		int n_dup, n_lost, n_total;
 		new_tree = tr_copy_tree(root);
 		m = tr_expand_node(new_tree, node); /* O(N) */
@@ -221,7 +221,7 @@ Tree *tr_root_by_sdi(Tree *root, Tree *spec)
 Tree *tr_root_by_sdi_fast(Tree *root, Tree *spec)
 {
 	int i, min, min_i, min_dup, n, factor;
-	float min_h;
+	double min_h;
 	Tree **links, **node;
 	Tree *cur_root;
 	extern void tr_sdi_set_dup_bound(int);
@@ -254,7 +254,7 @@ Tree *tr_root_by_sdi_fast(Tree *root, Tree *spec)
 	cur_root = tr_reroot(cur_root, root, -1.0);
 
 	for (i = 0; i < n - 1; ++i) {
-		float h;
+		double h;
 		int n_dup, n_lost, n_total = 0;
 		cur_root = tr_reroot(cur_root, node[i], -1.0);
 		tr_tree_init(cur_root);

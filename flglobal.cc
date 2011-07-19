@@ -74,7 +74,7 @@ int FNglobal::change_ws(int shift)
 }
 
 static Fl_Progress *progress_bar;
-static int progress_func(float val)
+static int progress_func(double val)
 {
 	char str[8];
 	sprintf(str, "%d%%", (int)(val*100+0.5));
@@ -117,10 +117,10 @@ Tree *FNphyml::do_phyml()
 	}
 	int cutoff;
 	MultiAlign *ma;
-	pc->kappa = float(atof(i_tstv->value()));
-	pc->alpha = float(atof(i_alpha->value()));
+	pc->kappa = double(atof(i_tstv->value()));
+	pc->alpha = double(atof(i_alpha->value()));
 	pc->n_cat = int(atoi(i_num_cat->value()));
-	pc->invar = float(atof(i_inv->value()));
+	pc->invar = double(atof(i_inv->value()));
 	pc->bs = int(atoi(i_bs->value()));
 	free(pc->model);
 	pc->is_nucl = (i_type->value() == 0)? 1 : 0;

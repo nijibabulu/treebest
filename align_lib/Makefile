@@ -1,5 +1,5 @@
 CC=			gcc
-CFLAGS=		-g -O2 -Wall
+CFLAGS=		-W -O2 -Wall -fomit-frame-pointer
 DFLAGS=		#-DUSE_KR_ALLOC
 LIBOBJS=	aa2nt.o aa2nt_local.o transaln.o \
 			splice.o splice_local.o splice_bound.o \

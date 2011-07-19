@@ -393,11 +393,11 @@ Matrix *phyml_phymlmat2Matrix(matrix *phymlmat)
 	mat = (Matrix*)malloc(sizeof(Matrix));
 	mat->count = phymlmat->n_otu;
 	mat->name = (char**)malloc(sizeof(char*) * mat->count);
-	mat->dist = (float*)malloc(sizeof(float) * mat->count * mat->count);
+	mat->dist = (double*)malloc(sizeof(double) * mat->count * mat->count);
 	for (i = 0; i < mat->count; ++i) {
 		mat->name[i] = cpystr(phymlmat->name[i]);
 		for (j = 0; j < mat->count; ++j)
-			mat->dist[i * mat->count + j] = (float)phymlmat->dist[i][j];
+			mat->dist[i * mat->count + j] = (double)phymlmat->dist[i][j];
 		mat->dist[i * mat->count + i] = 0.0;
 	}
 	return mat;

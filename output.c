@@ -139,7 +139,7 @@ void tr_align_aln_output(FILE *fp, const MultiAlign *ma)
 void tr_matrix_output(FILE *fp, const Matrix *mat)
 {
 	int i, j, n;
-	float *p;
+	double *p;
 
 	assert(fp); assert(mat);
 	n = mat->count;

@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "best.h"
 
+extern double MIN_DIFF_LK;
 extern FILE *tr_get_fp(const char*);
 extern void ma_init_nucl_data();
 extern void ma_free_nucl_data();
@@ -131,39 +132,39 @@ Tree *best_core(BestConfig *bo)
 	
 	if (bo->is_phyml && !bo->is_skip_mmerge) { /* build phyml_aa tree */
 		char *s;
-		float lk1, lk2;
+		double lk1, lk2;
 		MultiAlign *pma;
 		pc = init_PhymlConfig(bo);
 		pc->n_cat = 1; /* one category for PHYML-WAG */
 		c_begin = clock();
 		pma = ma_trans_align(bo->ma, 1);
 		t_phyml_aa = phyml_core(pma, pc, 0, 1, 1);
-		cpp_get_keyval(t_phyml_aa, "Loglk", &s); lk1 = (float)atof(s); free(s);
-		cpp_get_keyval(t_phyml_aa, "LoglkSpec", &s); lk2 = (float)atof(s); free(s);
+		cpp_get_keyval(t_phyml_aa, "Loglk", &s); lk1 = (double)atof(s); free(s);
+		cpp_get_keyval(t_phyml_aa, "LoglkSpec", &s); lk2 = (double)atof(s); free(s);
 		ma_free(pma);
 		phyml_free_config(pc);
 		t_phyml_aa = tr_root_tree(t_phyml_aa, (n_spec > 2)? bo->stree : 0);
 		tr_normalize_bs_value(t_phyml_aa, -80);
 		if (bo->is_debug) {
-			fprintf(stderr, "(best_core) Time elapses in PHYML-WAG: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+			fprintf(stderr, "(best_core) Time elapses in PHYML-WAG: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 			fprintf(stderr, "(best_core) PHYML-WAG (Loglk,LoglkSpec) = (%f,%f)\n", lk1, lk2);
 		}
 	}
 
 	if (bo->is_phyml) { /* build phyml_nt tree */
 		char *s;
-		float lk1, lk2;
+		double lk1, lk2;
 		c_begin = clock();
 		pc = init_PhymlConfig(bo); /* this will be deleted later, not in this block */
 		pc->is_nucl = 1; free(pc->model); pc->model = cpystr("HKY");
 		if (!bo->is_skip_mmerge) {
 			t_phyml_nt = phyml_core(bo->ma, pc, 0, 1, 1);
-			cpp_get_keyval(t_phyml_nt, "Loglk", &s); lk1 = (float)atof(s); free(s);
-			cpp_get_keyval(t_phyml_nt, "LoglkSpec", &s); lk2 = (float)atof(s); free(s);
+			cpp_get_keyval(t_phyml_nt, "Loglk", &s); lk1 = (double)atof(s); free(s);
+			cpp_get_keyval(t_phyml_nt, "LoglkSpec", &s); lk2 = (double)atof(s); free(s);
 			t_phyml_nt = tr_root_tree(t_phyml_nt, (n_spec > 2)? bo->stree : 0);
 			tr_normalize_bs_value(t_phyml_nt, -80);
 			if (bo->is_debug) {
-				fprintf(stderr, "(best_core) Time elapses in PHYML-HKY: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+				fprintf(stderr, "(best_core) Time elapses in PHYML-HKY: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 				fprintf(stderr, "(best_core) PHYML-HKY (Loglk,LoglkSpec) = (%f,%f)\n", lk1, lk2);
 			}
 		}
@@ -186,7 +187,7 @@ Tree *best_core(BestConfig *bo)
 			tr_lost_infer(t_nj_dn_cons, bo->stree);
 		}
 		if (bo->is_debug)
-			fprintf(stderr, "(best_core) Time elapses in NJ-dN: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+			fprintf(stderr, "(best_core) Time elapses in NJ-dN: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 	}
 
 	if (!bo->is_skip_mmerge) { /* build nj_ds tree */
@@ -197,7 +198,7 @@ Tree *best_core(BestConfig *bo)
 		tr_SDI(t_nj_ds, bo->stree, 0);
 		tr_lost_infer(t_nj_ds, bo->stree);
 		if (bo->is_debug)
-			fprintf(stderr, "(best_core) Time elapses in NJ-dS: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+			fprintf(stderr, "(best_core) Time elapses in NJ-dS: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 	}
 	
 	if (!bo->is_skip_mmerge) { /* build nj_mm tree */
@@ -217,7 +218,7 @@ Tree *best_core(BestConfig *bo)
 			tr_lost_infer(t_nj_mm_cons, bo->stree);
 		}
 		if (bo->is_debug)
-			fprintf(stderr, "(best_core) Time elapses in NJ-MM: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+			fprintf(stderr, "(best_core) Time elapses in NJ-MM: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 	}
 
 	if (!bo->is_skip_mmerge) {
@@ -251,20 +252,21 @@ Tree *best_core(BestConfig *bo)
 	} else {
 		t_final = bo->is_skip_mmerge;
 	}
-	
+	if (bo->is_debug) fprintf(stderr, "tree merge: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
+
 	if (bo->is_phyml) { /* calculate branch length */
 		char *s;
-		float lk1, lk2;
+		double lk1, lk2;
 		c_begin = clock();
 		tree = phyml_core(bo->ma, pc, t_final, 0, 1); /* pc has been initialized above */
 		tr_compare_core(t_final, tree, COMPARE_WRITE_TREE_INDEX);
-		cpp_get_keyval(tree, "Loglk", &s); lk1 = (float)atof(s); free(s);
-		cpp_get_keyval(tree, "LoglkSpec", &s); lk2 = (float)atof(s); free(s);
+		cpp_get_keyval(tree, "Loglk", &s); lk1 = (double)atof(s); free(s);
+		cpp_get_keyval(tree, "LoglkSpec", &s); lk2 = (double)atof(s); free(s);
 		phyml_free_config(pc);
 		tree = (n_spec > 2)? tr_root_by_sdi(tree, bo->stree) : tr_root_by_min_height(tree);
 		cpp_attach_id_by_name(tree, bo->ma->n, bo->ma->name);
 		if (bo->is_debug) {
-			fprintf(stderr, "(best_core) Time elapses in optimizing branch lengths: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
+			fprintf(stderr, "(best_core) Time elapses in optimizing branch lengths: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 			fprintf(stderr, "(best_core) final (Loglk,LoglkSpec) = (%f,%f)\n", lk1, lk2);
 		}
 	} else {
@@ -368,7 +370,7 @@ BestConfig *best_command_line_options(int argc, char *argv[])
 
 	bo = best_init_option();
 	skip_mmerge = 0;
-	while ((c = getopt(argc, argv, "qsrIDNgSPAF:c:C:f:p:o:k:a:d:l:L:b:")) >= 0) {
+	while ((c = getopt(argc, argv, "qsrIDNgSPAF:c:C:f:p:o:k:a:d:l:L:b:Z:")) >= 0) {
 		switch (c) {
 			case 'q': bo->is_quiet = 1; break;
 			case 's': bo->is_sequenced_only = 1; break;
@@ -394,15 +396,16 @@ BestConfig *best_command_line_options(int argc, char *argv[])
 			case 'p': bo->prefix = cpystr(optarg); break;
 			case 'o': bo->output_fn = cpystr(optarg); break;
 			case 'a': if (optarg[0] == 'e' && optarg[1] == 0) bo->alpha = -1.0;
-					  else bo->alpha = (float)atof(optarg);
+					  else bo->alpha = (double)atof(optarg);
 					  break;
 			case 'k': if (optarg[0] == 'e' && optarg[1] == 0) bo->kappa = -1.0;
-					  else bo->kappa = (float)atof(optarg);
+					  else bo->kappa = (double)atof(optarg);
 					  break;
 			case 'd': bo->prob_dup = atof(optarg); break;
 			case 'l': bo->prob_loss_dup = atof(optarg); break;
 			case 'L': bo->prob_loss_spec = atof(optarg); break;
 			case 'b': bo->prob_not_exist = atof(optarg); break;
+			case 'Z': MIN_DIFF_LK = atof(optarg); break;
 		}
 	}
 	if (argc == optind) return 0;

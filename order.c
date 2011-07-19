@@ -91,7 +91,7 @@ void tr_order_core(Tree *tree)
 {
 	Tree **node, *p, *q;
 	int i, j, n, y;
-	float x;
+	double x;
 
 	if (tree == 0) return;
 	node = tr_stack(tree, Tree*);

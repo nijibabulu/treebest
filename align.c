@@ -298,7 +298,7 @@ Matrix *ma_init_small_matrix(MultiAlign *ma)
 	mat = (Matrix*)malloc(sizeof(Matrix));
 	mat->count = ma->n;
 	mat->name = ma->name;
-	mat->dist = (float*)malloc(sizeof(float) * ma->n * ma->n);
+	mat->dist = (double*)malloc(sizeof(double) * ma->n * ma->n);
 	return mat;
 }
 /* note here does not return a Matrix */
@@ -307,7 +307,7 @@ void ma_cal_mm_dist(Matrix *mat, const MultiAlign *ori_ma, int is_rand, int is_k
 	int l, i, j, k;
 	int *array;
 	char *seqi, *seqj;
-	float d, max_d;
+	double d, max_d;
 	int count, match;
 	int max_num;
 	const MultiAlign *ma = (ori_ma->ori_nucl)? ori_ma->ori_nucl : ori_ma;
@@ -342,13 +342,13 @@ void ma_cal_mm_dist(Matrix *mat, const MultiAlign *ori_ma, int is_rand, int is_k
 				++count;
 			}
 			if (count > 0) {
-				d = (float)match / count;
+				d = (double)match / count;
 				if (is_kimura) { /* kimura correction */
 					if (d < 0.75)
 						d = -log(1.0 - d - (d * d * 0.2));
 					else if (d > 0.930) d = 10.0;
 					else {
-						d = (float)dayhoff_pams[(int)(d * 1000.0 - 750.0 + 0.5)];
+						d = (double)dayhoff_pams[(int)(d * 1000.0 - 750.0 + 0.5)];
 						d /= 100.0;
 					}
 				}
@@ -414,6 +414,6 @@ Matrix *ma_init_matrix(const MultiAlign *ma)
 	mat->name = (char**)malloc(sizeof(char*) * ma->n);
 	for (i = 0; i < ma->n; ++i)
 		mat->name[i] = cpystr(ma->name[i]);
-	mat->dist = (float*)malloc(sizeof(float) * ma->n * ma->n);
+	mat->dist = (double*)malloc(sizeof(double) * ma->n * ma->n);
 	return mat;
 }

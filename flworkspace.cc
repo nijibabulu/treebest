@@ -59,7 +59,7 @@ void Workspace::draw_tree()
 	int i, n;
 	Tree **node, *p;
 	int tmp, max;
-	float real_x, real_y, shift_x, shift_y;
+	double real_x, real_y, shift_x, shift_y;
 	char *s;
 	hash_map_char<char*> *hash;
 
@@ -142,7 +142,7 @@ void Workspace::draw_tree()
 	{
 		fl_color(FL_BLUE);
 		for (i = 0; i < n; ++i) {
-			float tmp_x, tmp_y, tmp_l;
+			double tmp_x, tmp_y, tmp_l;
 			p = node[i];
 			if (pp->is_SDI && plot_ptr(p)->ptr && ((SDIinfo*)(plot_ptr(p)->ptr))->type == 'D') continue;
 			tmp_x = plot_ptr(p)->x * real_x + shift_x;
@@ -153,7 +153,7 @@ void Workspace::draw_tree()
 		if (pp->is_SDI) {
 			fl_color(FL_RED);
 			for (i = 0; i < n; ++i) {
-				float tmp_x, tmp_y, tmp_l;
+				double tmp_x, tmp_y, tmp_l;
 				p = node[i];
 				if (plot_ptr(p)->ptr && ((SDIinfo*)(plot_ptr(p)->ptr))->type != 'D') continue;
 				tmp_x = plot_ptr(p)->x * real_x + shift_x;

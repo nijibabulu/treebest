@@ -34,7 +34,7 @@ double ALPHA_MAX;
 double BL_MIN;
 double BL_START;
 double BL_MAX;
-double MIN_DIFF_LK;
+double MIN_DIFF_LK = -1;
 double GOLDEN_R;
 double GOLDEN_C;
 int    T_MAX_FILE;
@@ -2127,6 +2127,7 @@ void Init_Constant()
   BL_MIN =           1.e-10;
   BL_START =         1.e-03;
   BL_MAX =           1.e+05;
+  if (MIN_DIFF_LK < 0) {
 #ifdef LH3_REVISION
   /* This is a tricky issue. The author of PHYML uses this variable to perform a consistent test, which
    * check whether optimizations twice can lead to the same result. If I am right, on i686-linux systems
@@ -2143,6 +2144,7 @@ void Init_Constant()
 #else
   MIN_DIFF_LK =      1.e-06;
 #endif
+  }
   GOLDEN_R =     0.61803399;
   GOLDEN_C = (1.0-GOLDEN_R);
   T_MAX_FILE =          200;
@@ -2276,7 +2278,7 @@ void NNI(arbre *tree, edge *b_fcus, int do_swap)
   if(lk2 < lk2_init - MIN_DIFF_LK)
     {
       fprintf(stderr, "%f %f %f %f\n",l_infa,l_max,l_infb,b_fcus->l);
-      fprintf(stderr, "%f -- %f \n",lk2_init,lk2);
+      fprintf(stderr, "%f -- %f %f\n",lk2_init,lk2, MIN_DIFF_LK);
 #ifdef LH3_REVISION
       fprintf(stderr, "\n. Err. in NNI (1)\n");
 #else

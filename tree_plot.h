@@ -7,7 +7,7 @@
 
 typedef struct
 {
-	float x, y;
+	double x, y;
 	void *ptr;
 } PlotPtr;
 
@@ -19,10 +19,10 @@ typedef struct
 	int x_margin, y_margin;
 	int font_size;
 	int is_SDI;
-	float font_width;
-	float line_width;
-	float box_width;
-	float x_skip;
+	double font_width;
+	double line_width;
+	double box_width;
+	double x_skip;
 	char *font;
 	int is_color;
 	int is_bs;

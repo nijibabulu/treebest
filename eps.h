@@ -11,7 +11,7 @@
 #define eps_header(fp,x,y,linewidth) { \
 	fprintf(fp,"%%!PS-Adobe-3.0 EPSF-3.0\n"); \
 	fprintf(fp,"%%%%BoundingBox:"); \
-	fprintf(fp," 1 1 %g %g\n\n",(float)(x),(float)(y)); \
+	fprintf(fp," 1 1 %g %g\n\n",(double)(x),(double)(y)); \
 	fprintf(fp,"/C { dup 255 and 255 div exch dup -8 bitshift 255 and 255 div 3 1 roll -16 bitshift 255 and 255 div 3 1 roll setrgbcolor } bind def\n"); \
 	fprintf(fp,"/L { 4 2 roll moveto lineto } bind def\n"); \
 	fprintf(fp,"/LX { dup 4 -1 roll exch moveto lineto } bind def\n"); \
@@ -29,17 +29,17 @@
 
 #define eps_bottom(fp) fprintf(fp,"stroke showpage\n")
 #define eps_color(fp,col) fprintf(fp,"stroke %d C\n",col)
-#define eps_gray(fp,gray) fprintf(fp, "%g setgray\n",(float)gray)
-#define eps_line(fp,x1,y1,x2,y2) fprintf(fp,"%g %g %g %g L\n",(float)(x1),(float)(y1),(float)(x2),(float)(y2))
-#define eps_linex(fp,x1,x2,y) fprintf(fp,"%g %g %g LX\n",(float)(x1),(float)(x2),(float)(y))
-#define eps_liney(fp,y1,y2,x) fprintf(fp,"%g %g %g LY\n",(float)(y1),(float)(y2),(float)(x))
-#define eps_Lstr(fp,x,y,s) fprintf(fp,"%g %g (%s) LS\n",(float)(x),(float)(y),s)
-#define eps_Rstr(fp,x,y,s) fprintf(fp,"%g %g (%s) RS\n",(float)(x),(float)(y),s)
-#define eps_Lstr4(fp,x,y,s) fprintf(fp,"%g %g FS4 add (%s) LS\n",(float)(x),(float)(y),s)
-#define eps_Rstr4(fp,x,y,s) fprintf(fp,"%g %g FS4 add (%s) RS\n",(float)(x),(float)(y),s)
-#define eps_Lstr4s(fp,x,y,s) fprintf(fp,"%g %g FS4 sub (%s) LS\n",(float)(x),(float)(y),s)
-#define eps_Rstr4s(fp,x,y,s) fprintf(fp,"%g %g FS4 sub (%s) RS\n",(float)(x),(float)(y),s)
-#define eps_box(fp,x1,y1,x2,y2) fprintf(fp,"%g %g %g %g B\n",(float)(x1),(float)(y1),(float)(x2),(float)(y2))
+#define eps_gray(fp,gray) fprintf(fp, "%g setgray\n",(double)gray)
+#define eps_line(fp,x1,y1,x2,y2) fprintf(fp,"%g %g %g %g L\n",(double)(x1),(double)(y1),(double)(x2),(double)(y2))
+#define eps_linex(fp,x1,x2,y) fprintf(fp,"%g %g %g LX\n",(double)(x1),(double)(x2),(double)(y))
+#define eps_liney(fp,y1,y2,x) fprintf(fp,"%g %g %g LY\n",(double)(y1),(double)(y2),(double)(x))
+#define eps_Lstr(fp,x,y,s) fprintf(fp,"%g %g (%s) LS\n",(double)(x),(double)(y),s)
+#define eps_Rstr(fp,x,y,s) fprintf(fp,"%g %g (%s) RS\n",(double)(x),(double)(y),s)
+#define eps_Lstr4(fp,x,y,s) fprintf(fp,"%g %g FS4 add (%s) LS\n",(double)(x),(double)(y),s)
+#define eps_Rstr4(fp,x,y,s) fprintf(fp,"%g %g FS4 add (%s) RS\n",(double)(x),(double)(y),s)
+#define eps_Lstr4s(fp,x,y,s) fprintf(fp,"%g %g FS4 sub (%s) LS\n",(double)(x),(double)(y),s)
+#define eps_Rstr4s(fp,x,y,s) fprintf(fp,"%g %g FS4 sub (%s) RS\n",(double)(x),(double)(y),s)
+#define eps_box(fp,x1,y1,x2,y2) fprintf(fp,"%g %g %g %g B\n",(double)(x1),(double)(y1),(double)(x2),(double)(y2))
 #define eps_fill(fp) fprintf(fp,"fill\n")
 #define eps_stroke(fp) fprintf(fp,"stroke\n")
 

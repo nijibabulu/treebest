@@ -2,16 +2,16 @@
 #include "tree.h"
 #include "utils.h"
 
-static float tr_root_max = 0.0; /* used for static Tree *tr_locate_root() */
+static double tr_root_max = 0.0; /* used for static Tree *tr_locate_root() */
 static Tree *tr_root_max_ptr = 0;
 
 /*
  * reroot a tree
  */
-Tree *tr_reroot(Tree *root, Tree *node, float dist)
+Tree *tr_reroot(Tree *root, Tree *node, double dist)
 {
 	int i;
-	float d, tmp;
+	double d, tmp;
 	Tree *p, *q, *r, *s, *new_root;
 	if (node == root) return root;
 	if (dist < 0.0 || dist > node->d) dist = node->d / 2.0;
@@ -70,9 +70,9 @@ Tree *tr_reroot(Tree *root, Tree *node, float dist)
  * I can choose not to use recursive, but it will become more complex.
  * Note that two global static variables are used here.
  */
-static Tree *tr_locate_root(Tree *tree, float *dist)
+static Tree *tr_locate_root(Tree *tree, double *dist)
 {
-	float max1, max2, d;
+	double max1, max2, d;
 	int i;
 	Tree *p, *mp;
 
@@ -98,7 +98,7 @@ static Tree *tr_locate_root(Tree *tree, float *dist)
  */
 Tree *tr_root_by_min_height(Tree *root)
 {
-	float dist, d;
+	double dist, d;
 	Tree *p;
 
 	if (root == 0) return 0;
@@ -120,7 +120,7 @@ Tree *tr_root_by_min_height(Tree *root)
 Tree *tr_remove_root(Tree *root)
 {
 	Tree *p;
-	float d;
+	double d;
 
 	if (root == 0) return 0;
 	d = -2e30;

@@ -1,6 +1,6 @@
 CC=			gcc
 CXX=		g++
-CFLAGS=		-Wall -O4 -fomit-frame-pointer
+CFLAGS=		-W -Wall -O2 -fomit-frame-pointer
 CXXFLAGS=   $(CFLAGS)
 DFLAGS=		-DPHYML
 DFLAGS_SPEC=-DUNIX -DLH3_REVISION -DLH3_ADDON

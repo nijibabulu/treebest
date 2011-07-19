@@ -29,7 +29,7 @@ double ALPHA_MAX;
 double BL_MIN;
 double BL_START;
 double BL_MAX;
-double MIN_DIFF_LK;
+extern double MIN_DIFF_LK;
 double GOLDEN_R;
 double GOLDEN_C;
 int    T_MAX_FILE;

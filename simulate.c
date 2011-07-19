@@ -55,7 +55,7 @@ Tree *tr_simulate(Tree *spec, double pd, double pl, double pdl, double height, i
 	Tree *p, *q, **result;
 	int k, max_k, l, max_l, count;
 	STACK *stack, *top;
-	float tmp;
+	double tmp;
 
 	max_k = BLOCK_SIZE;
 	k = l = max_l = count = 0;

@@ -9,14 +9,14 @@
 Tree *tr_build_tree_from_align(MultiAlign *ma, int n_cons, Tree **cons, int init_cons, Tree *spec,
 		int dist_type, int is_sdi_root, int is_rand);
 
-static float *cal_weight(MultiAlign *ma)
+static double *cal_weight(MultiAlign *ma)
 {
 	int i, n;
-	float *fweight, f, sum;
+	double *fweight, f, sum;
 	Tree *p, *root, **node;
 
 	n = ma->n;
-	fweight = (float*)malloc(sizeof(float) * n);
+	fweight = (double*)malloc(sizeof(double) * n);
 	root = tr_build_tree_from_align(ma, 0, 0, 0, 0, DIST_MM, 0, 0); /* build NJ tree */
 	node = tr_stack(root, Tree*);
 	tr_expand_leaf_by_id(root, node);
@@ -46,7 +46,7 @@ static float *cal_weight(MultiAlign *ma)
 	tr_delete_tree(root);
 	return fweight;
 }
-static int *cal_profile_score_array(MultiAlign *ma, int k, float *weight)
+static int *cal_profile_score_array(MultiAlign *ma, int k, double *weight)
 {
 	int i, j, n, sum;
 	int *S, *new_w, *bl_array;
@@ -74,7 +74,7 @@ static int *cal_profile_score_array(MultiAlign *ma, int k, float *weight)
 	free(new_w);
 	return S;
 }
-static void mask_one_seq(MultiAlign *ma, MultiAlign *ma_nt, int k, float *weight)
+static void mask_one_seq(MultiAlign *ma, MultiAlign *ma_nt, int k, double *weight)
 {
 	int *S, *F, *B, *start;
 	int n, i, j, len;
@@ -128,7 +128,7 @@ static void mask_one_seq(MultiAlign *ma, MultiAlign *ma_nt, int k, float *weight
 void ma_mask_poor_segment(MultiAlign *ma, MultiAlign *ma_nt)
 {
 	int k;
-	float *weight;
+	double *weight;
 	assert(ma);
 	if (ma->n < 3) return; /* do nothing */
 	weight = cal_weight(ma);

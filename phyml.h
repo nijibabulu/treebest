@@ -13,9 +13,9 @@ typedef struct __PhymlConfig
 	int is_stat;
 	int bs;
 	char *model;
-	float kappa;
-	float alpha;
-	float invar;
+	double kappa;
+	double alpha;
+	double invar;
 	int n_cat;
 
 	/* for phyml addon */

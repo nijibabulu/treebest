@@ -32,7 +32,7 @@ hash_map_char<char*> *ta_read_fa(FILE *fp)
 	MYFREE(seq.s);
 	return hash;
 }
-MultiAlign *ma_back_trans_core(MultiAlign *aa, hash_map_char<char*> *hash, float threshold)
+MultiAlign *ma_back_trans_core(MultiAlign *aa, hash_map_char<char*> *hash, double threshold)
 {
 	char *aln_aa, *aln_nt_pre, *aln_nt, *seq_nt;
 	int flaw;
@@ -76,7 +76,7 @@ MultiAlign *ma_back_trans_core(MultiAlign *aa, hash_map_char<char*> *hash, float
 	free(aln_aa);
 	return nt;
 }
-MultiAlign *ma_back_trans(MultiAlign *aa, FILE *fp, float threshold)
+MultiAlign *ma_back_trans(MultiAlign *aa, FILE *fp, double threshold)
 {
 	hash_map_char<char*> *hash;
 	hash_map_char<char*>::iterator iter;
@@ -97,7 +97,7 @@ int ma_backtrans_task(int argc, char *argv[])
 {
 	int c;
 	FILE *fp_aa, *fp_nt;
-	float thres = 0.90;
+	double thres = 0.90;
 	MultiAlign *aa, *nt;
 	while ((c = getopt(argc, argv, "t:")) >= 0) {
 		switch (c) {

@@ -107,7 +107,7 @@ Tree *tr_build_tree(Task *task)
 		tr_delete_tree_ptr(tree); /* free Tree::ptr for SDI */
 		task->real_bs_time = (k == task->bs_time)? k : k+1;
 		/* fprintf(stderr, "Real bootstrap times: %d in %f seconds.\n", task->real_bs_time,
-				(float)(clock() - start_time) / CLOCKS_PER_SEC); */
+				(double)(clock() - start_time) / CLOCKS_PER_SEC); */
 		tr_normalize_bs_value(tree, task->real_bs_time);
 	}
 	/* if DIST_DM is applied, calculate the branch lengths */

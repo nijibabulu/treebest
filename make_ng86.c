@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	fprintf(fh, " *         modified by Li Heng <lh3@sanger.ac.uk>\n");
 	fprintf(fh, " */\n\n");
 
-	fprintf(fh, "const float pot_smut[64] = { /* potential same mut */\n");
+	fprintf(fh, "const double pot_smut[64] = { /* potential same mut */\n");
 	for(i = 0; i < 4; i++) {
 		for(j = 0; j < 4; j++) {
 			for(k = 0; k < 4; k++) {

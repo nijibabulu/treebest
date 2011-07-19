@@ -32,7 +32,7 @@ int plot_cal_x_y(Tree *tree, int is_real)
 {
 	Tree **node, *p;
 	int i, j, n;
-	float scale;
+	double scale;
 
 	node = tr_stack(tree, Tree*);
 	n = tr_expand_node(tree, node);
@@ -42,7 +42,7 @@ int plot_cal_x_y(Tree *tree, int is_real)
 	for (i = j = 0; i < n; ++i) {
 		p = node[i];
 		if (p->n == 0) {
-			plot_ptr(p)->y = (float)j / scale;
+			plot_ptr(p)->y = (double)j / scale;
 			++j;
 		} else plot_ptr(p)->y = (plot_ptr(p->node[0])->y + plot_ptr(p->node[p->n-1])->y) / 2.0;
 	}
@@ -110,7 +110,7 @@ void plot_eps(FILE *eps, Tree *tree, PlotParam *pp)
 	int i, n;
 	Tree **node, *p;
 	int tmp, max;
-	float real_x, real_y, shift_x, shift_y;
+	double real_x, real_y, shift_x, shift_y;
 	char str[128];
 
 	node = tr_stack(tree, Tree*);
@@ -183,7 +183,7 @@ void plot_eps(FILE *eps, Tree *tree, PlotParam *pp)
 	/* nodes */
 	if (pp->is_color) {
 		for (i = 0; i < n; ++i) {
-			float tmp_x, tmp_y, tmp_l;
+			double tmp_x, tmp_y, tmp_l;
 			if (pp->is_SDI && plot_ptr(node[i])->ptr && ((SDIinfo*)(plot_ptr(node[i])->ptr))->type == 'D') continue;
 			tmp_x = plot_ptr(node[i])->x * real_x + shift_x;
 			tmp_y = pp->height - plot_ptr(node[i])->y * real_y - shift_y;
@@ -196,7 +196,7 @@ void plot_eps(FILE *eps, Tree *tree, PlotParam *pp)
 	else eps_gray(eps, 0);
 	if (pp->is_SDI) {
 		for (i = 0; i < n; ++i) {
-			float tmp_x, tmp_y, tmp_l;
+			double tmp_x, tmp_y, tmp_l;
 			if (plot_ptr(node[i])->ptr && ((SDIinfo*)(plot_ptr(node[i])->ptr))->type != 'D') continue;
 			tmp_x = plot_ptr(node[i])->x * real_x + shift_x;
 			tmp_y = pp->height - plot_ptr(node[i])->y * real_y - shift_y;

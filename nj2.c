@@ -215,10 +215,10 @@ static Tree *nj_few_leaves(Matrix *mat)
  */
 Tree *tr_nj_binary(Matrix *mat, int n_cons, Tree **ori_constraint, int init_cons)
 {
-	float *sum, *r, *x1;
+	double *sum, *r, *x1;
 	Tree **array, *p;
 	int n, i, j, l, mi, mj;
-	float x2, x3, x4, min, *dist;
+	double x2, x3, x4, min, *dist;
 	int m_row, *cons_matrix;
 	char **branch_matrix, *first_row;
 
@@ -234,8 +234,8 @@ Tree *tr_nj_binary(Matrix *mat, int n_cons, Tree **ori_constraint, int init_cons
 	n = mat->count; /* number of nodes */
 	mi = mj = -1; /* useless. just to avoid a compiling warning */
 	if (n <= 2) return 0; /* no need to construct a tree */
-	r = (float*)malloc(sizeof(float) * n); /* r array */
-	sum = (float*)malloc(sizeof(float) * n); /* sum array. r = sum / (|L|-2) */
+	r = (double*)malloc(sizeof(double) * n); /* r array */
+	sum = (double*)malloc(sizeof(double) * n); /* sum array. r = sum / (|L|-2) */
 	array = (Tree**)malloc(sizeof(Tree*) * n); /* where the resultant tree grows */
 	for (i = 0; i < n; ++i) { /* fill array */
 		p = array[i] = tr_new_node(); /* leaf nodes of the resultant tree */
@@ -421,11 +421,11 @@ static void nj_expand_leaf_by_id(Tree *root, Tree **leaf)
  */
 Tree *tr_nj_rooted(Matrix *mat, int n_cons, Tree **ori_constraint, int init_cons)
 {
-	float *sum, *r, *x1;
+	double *sum, *r, *x1;
 	Tree **array, **leaf, *p;
 	Tree **constraint;
 	int n, i, j, l, mi, mj;
-	float x2, x3, x4, min, *dist;
+	double x2, x3, x4, min, *dist;
 	extern Tree *tr_pre_cons(Tree *cons, int init_cons);
 
 	assert(mat);
@@ -440,8 +440,8 @@ Tree *tr_nj_rooted(Matrix *mat, int n_cons, Tree **ori_constraint, int init_cons
 	/* allocation */
 	mi = mj = -1; /* useless. just to avoid a compiling warning */
 	if (n <= 2) return 0; /* no need to construct a tree */
-	r = (float*)malloc(sizeof(float) * n); /* r array */
-	sum = (float*)malloc(sizeof(float) * n); /* sum array. r = sum / (|L|-2) */
+	r = (double*)malloc(sizeof(double) * n); /* r array */
+	sum = (double*)malloc(sizeof(double) * n); /* sum array. r = sum / (|L|-2) */
 	leaf = (Tree**)malloc(sizeof(Tree*) * n); /* leaf array for constrained tree(s) */
 	array = (Tree**)malloc(sizeof(Tree*) * n); /* where the resultant tree grows */
 	for (i = 0; i < n; ++i) { /* fill array */

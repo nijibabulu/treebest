@@ -8,13 +8,13 @@ Matrix *tr_read_matrix(FILE *fp)
 	int i, j, n;
 	char name[256];
 	Matrix *mat;
-	float x;
+	double x;
 
 	assert(fp);
 	fscanf(fp, "%d", &n);
 	mat = (Matrix*)malloc(sizeof(Matrix));
 	mat->count = n;
-	mat->dist = (float*)malloc(sizeof(float) * mat->count * mat->count);
+	mat->dist = (double*)malloc(sizeof(double) * mat->count * mat->count);
 	mat->name = (char**)malloc(sizeof(char*) * mat->count);
 
 	for (i = 0; i < mat->count; ++i) {

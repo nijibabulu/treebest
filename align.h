@@ -90,7 +90,7 @@ void tr_align_aln_output(FILE *fp, const MultiAlign *ma);
 /* translate nucleotide alignment to protein alignment */
 MultiAlign *ma_trans_align(const MultiAlign *ma, int is_trans);
 
-MultiAlign *ma_back_trans(MultiAlign *aa, FILE *fp, float threshold);
+MultiAlign *ma_back_trans(MultiAlign *aa, FILE *fp, double threshold);
 
 void ma_remove_gap(MultiAlign *ma);
 

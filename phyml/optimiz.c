@@ -17,7 +17,7 @@ the GNU public licence.  See http://www.opensource.org for details.
 
 double UNLIKELY;
 double ROUND_MAX;
-double MIN_DIFF_LK;
+extern double MIN_DIFF_LK;
 
 /*********************************************************/
 
@@ -885,6 +885,7 @@ void Optimize_Br_Len_Serie(node *a, node *d, edge *b_fcus,
       printf("%f %f %f %f\n",l_infa,l_max,l_infb,b_fcus->l);
       printf("%f -- %f \n",lk_init,tree->tot_loglk);
 #endif
+	fprintf(stderr, "MIN_DIFF_LK: %f\n", MIN_DIFF_LK);
       Exit("\n. Err. in Optimize_Br_Len_Serie\n");
     }
 

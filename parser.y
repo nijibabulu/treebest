@@ -70,7 +70,7 @@ tree		: nhx_cell ';'
 nh_cell		: node
 				{ $$ = $1; }
 			| node TR_DIST
-				{ $$ = $1; $$->d = (float)lastfnum; }
+				{ $$ = $1; $$->d = (double)lastfnum; }
 			;
 
 nhx_cell	: nh_cell nhx
@@ -150,7 +150,7 @@ char *str_cpy()
 }
 void yyerror(const char *err)
 {
-	fprintf(stderr, "ERROR: %s in line %d, near (%s,%g)\n", err, lineno, lastid, (float)lastfnum);
+	fprintf(stderr, "ERROR: %s in line %d, near (%s,%g)\n", err, lineno, lastid, (double)lastfnum);
 }
 void tr_delete_tree(Tree *root)
 {
