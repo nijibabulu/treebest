@@ -114,7 +114,6 @@ typedef struct
 	char **sub_name; /* gene names in `list' */
 	Tree *subtree; /* cut tree, a pointer to a subtree of *tree */
 	char *cut; /* outgroup species */
-	int copy_tree_index;
 } Task;
 
 #ifdef __cplusplus

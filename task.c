@@ -38,7 +38,6 @@ Task *tr_alloc_task()
 	t->is_strong_con = 0;
 	t->real_bs_time = 0;
 	t->time_limit = 0;
-	t->copy_tree_index = 0;
 	t->cut = (char*)malloc(sizeof(char) * (strlen("Bilateria") + 1));
 	strcpy(t->cut, "Bilateria");
 	t->filter = 15;
@@ -849,7 +848,7 @@ int tr_build(int argc, char *argv[])
 			case 'p': task->init_cons = 0; break;
 			case 'W': is_no_root = 1; break;
 			case 'h': tr_build_usage(); break;
-			case 'I': task->copy_tree_index = 1; break;
+			case 'I': task->out_flag |= OUTPUT_TREE_INDEX; break;
 			default: tr_build_usage();
 		}
 	}
@@ -863,7 +862,7 @@ int tr_build(int argc, char *argv[])
 	tr_fill_fp(task, argv[optind]);
 	tr_build_tree(task);
 	if (is_no_root) task->tree = tr_remove_root(task->tree);
-	if (task->constraint && task->copy_tree_index) tr_compare_core(task->constraint[0], task->tree, COMPARE_WRITE_TREE_INDEX);
+	if (task->constraint && (task->out_flag & OUTPUT_TREE_INDEX)) tr_compare_core(task->constraint[0], task->tree, COMPARE_WRITE_TREE_INDEX);
 	tr_task_output(stdout, task);
 	tr_delete_task(task);
 	return 0;
