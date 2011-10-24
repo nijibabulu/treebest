@@ -223,30 +223,25 @@ Tree *best_core(BestConfig *bo)
 
 	if (!bo->is_skip_mmerge) {
 		c_begin = clock();
+		Tree *forest[7];
+		forest[1] = t_nj_ds;
+		forest[3] = t_nj_dn;
+		forest[4] = t_nj_mm;
 		if (bo->is_phyml) { /* tree merge */
-			Tree *forest[7];
-			forest[0] = t_phyml_nt; forest[1] = t_nj_ds;
-			forest[2] = t_phyml_aa; forest[3] = t_nj_dn;
-			forest[4] = t_nj_mm;
-			if (bo->ctree == 0) {
-				t_final = tr_mmerge(5, forest);
-			} else {
-				forest[5] = t_nj_dn_cons;
-				forest[6] = t_nj_mm_cons;
-				t_final = tr_mmerge(7, forest);
-			}
+			forest[0] = t_phyml_nt;
+			forest[2] = t_phyml_aa;
 		} else {
-			Tree *forest[5];
-			forest[0] = t_nj_mm;
-			forest[1] = t_nj_dn; forest[2] = t_nj_ds;
-			if (bo->ctree == 0) {
-				t_final = tr_mmerge(3, forest);
-			} else {
-				forest[3] = t_nj_dn_cons;
-				forest[4] = t_nj_mm_cons;
-				t_final = tr_mmerge(5, forest);
-			}
+			forest[0] = NULL;
+			forest[2] = NULL;
 		}
+		if (bo->ctree == 0) {
+			forest[5] = NULL;
+			forest[6] = NULL;
+		} else {
+			forest[5] = t_nj_dn_cons;
+			forest[6] = t_nj_mm_cons;
+		}
+		t_final = tr_mmerge(7, forest);
 		if (bo->is_debug) fprintf(stderr, "tree merge: %.2fs\n", (float)(clock() - c_begin) / CLOCKS_PER_SEC);
 
 	} else {

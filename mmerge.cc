@@ -244,7 +244,11 @@ static MMergeGlobal *initialize_G_space(int n, Tree **forest)
 	AllNodeHash *all_node;
 	all_node = g->hash = new AllNodeHash;
 
-	tree = forest[0];
+	int k = 0;
+	// Allows to pad the array with NULLs, to always have the same trees at the same indices
+	while (!forest[k]) k++;
+
+	tree = forest[k];
 	n_leaf = tree->n_leaf;
 	g->n_leaf = n_leaf;
 	g->n_tree = n;
@@ -257,8 +261,13 @@ static MMergeGlobal *initialize_G_space(int n, Tree **forest)
 	insert_single_leaf(all_node, n_leaf, name);
 	root_an = 0;
 	tree_index = 1;
-	for (int k = 0; k < n; ++k, tree_index<<=1) {
+	for (k = 0; k < n; ++k, tree_index<<=1) {
 		tree = forest[k];
+		// Allows to pad the array with NULLs, to always have the same trees at the same indices
+		if (!tree) {
+			fprintf(stderr, "[initialize_G_space] tree %d is NULL\n", k);
+			continue;
+		}
 		// QC
 		if (tree->n_leaf != n_leaf) {
 			fprintf(stderr, "[initialize_G_space] tree %d has different number of leaves (%d!=%d)\n", k, tree->n_leaf, n_leaf);
