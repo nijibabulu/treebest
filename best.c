@@ -119,6 +119,7 @@ Tree *best_core(BestConfig *bo)
 	/* mask alignment */
 	ma_apply_mask(bo->ma); /* aply MASKSEQ and eliminate columns consisting of only gaps */
 	ma_filter(bo->ma, bo->is_collapse_splice, bo->qual_thres, bo->is_mask_lss);
+
 	tma = ma_trans_align(bo->ma, 0);
 	if (tma == 0) {
 		fprintf(stderr, "<best_core> fail to translate the alignment. Is it a valid coding alignment?\n");
@@ -278,9 +279,6 @@ Tree *best_core(BestConfig *bo)
 			if (bo->is_phyml) {
 				write_tmp_tree(bo->prefix, ".phyml-aa.nhx", t_phyml_aa);
 				write_tmp_tree(bo->prefix, ".phyml-nt.nhx", t_phyml_nt);
-			} else {
-				write_tmp_tree(bo->prefix, ".phyml-aa.nhx", t_nj_dn);
-				write_tmp_tree(bo->prefix, ".phyml-nt.nhx", t_nj_mm);
 			}
 			write_tmp_tree(bo->prefix, ".nj-dn.nhx", t_nj_dn);
 			write_tmp_tree(bo->prefix, ".nj-ds.nhx", t_nj_ds);
