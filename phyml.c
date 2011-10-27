@@ -88,9 +88,9 @@ int phyml_task(int argc, char *argv[])
 	while ((c = getopt(argc, argv, "nt:m:k:a:i:c:sF:o:Ngb:p:C:Sd:l:L:f:")) >= 0) {
 		switch (c) {
 			case 'S': is_spec = 1; break;
-			case 'f': fp = tr_get_fp(optarg); break;
+			case 'f': fp = tr_get_fp(optarg);
 					  tmp_tree = tr_parse_first(fp);
-					  spec_tree = tr_post_spec_tree(tmp_tree);
+					  spec_tree = cpp_post_spec_tree(tmp_tree, 0);
 					  fclose(fp);
 					  break;
 			case 'd': pc->prob_dup = atof(optarg); break;
@@ -221,6 +221,17 @@ Tree *phyml_core(MultiAlign *ma, PhymlConfig *pc, Tree *inp, int is_build, int i
 	arbre *tree;
 	Tree *p;
 
+	/*
+	tr_align_output(stdout, ma);
+	printf("CALL phyml_core\n");
+	printf("align[%d %d %d %d]\n", ma->max,ma->n,ma->len,ma->is_nucl);
+	printf("config[%d %d %d %s %f %f %f %d %p %p %f %f %f %f]\n", pc->is_nucl,pc->is_stat,pc->bs,pc->model,pc->kappa,pc->alpha,pc->invar,pc->n_cat,pc->spec_tree,pc->ctree,pc->prob_not_exist,pc->prob_dup,pc->prob_loss_dup,pc->prob_loss_spec);
+	printf("%p %d %d\n", inp, is_build, is_opt);
+	if (pc->spec_tree) tr_tree_output(stdout, pc->spec_tree, OUTPUT_SDI); else printf("NULL\n");
+	if (pc->ctree) tr_tree_output(stdout, pc->ctree, OUTPUT_SDI); else printf("NULL\n");
+	if (inp) tr_tree_output(stdout, inp, OUTPUT_SDI); else printf("NULL\n");
+	*/
+
 	if (ma->n < 4) {
 		fprintf(stderr, "[phyml_core] your alignment should contain at least 4 sequences if you intend to use the `phyml' module.\n");
 		return 0;
@@ -313,6 +324,7 @@ Tree *phyml_core(MultiAlign *ma, PhymlConfig *pc, Tree *inp, int is_build, int i
 	Free_Cseq(alldata);
 	Free_Model(mod);
 	Free_Input(input);
+	//tr_tree_output(stdout, p, OUTPUT_SDI);
 	return p;
 }
 option *phyml_prepare_input(MultiAlign *ma, PhymlConfig *pc)
