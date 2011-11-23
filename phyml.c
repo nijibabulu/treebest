@@ -23,6 +23,7 @@ extern FILE *tr_get_fp(const char *fn);
 extern int T_MAX_FILE;
 extern double MDBL_MIN;
 extern double UNLIKELY;
+extern double MIN_DIFF_LK;
 
 option *phyml_config2option(PhymlConfig *pc);
 option *phyml_prepare_input(MultiAlign *ma, PhymlConfig *pc);
@@ -85,7 +86,7 @@ int phyml_task(int argc, char *argv[])
 	fpout = stdout;
 	phyml_init();
 	pc = phyml_init_config();
-	while ((c = getopt(argc, argv, "nt:m:k:a:i:c:sF:o:Ngb:p:C:Sd:l:L:f:")) >= 0) {
+	while ((c = getopt(argc, argv, "nt:m:k:a:i:c:sF:o:Ngb:p:C:Sd:l:L:f:Z:")) >= 0) {
 		switch (c) {
 			case 'S': is_spec = 1; break;
 			case 'f': fp = tr_get_fp(optarg);
@@ -130,6 +131,7 @@ int phyml_task(int argc, char *argv[])
 			case 'c': pc->n_cat = atoi(optarg); break;
 			case 'F': cut_off = atoi(optarg); break;
 			case 's': pc->is_stat = 1; break;
+			case 'Z': MIN_DIFF_LK = atof(optarg); break;
 		}
 	}
 	/* finalise PhymlConfig structure */
