@@ -120,6 +120,10 @@ Tree *best_core(BestConfig *bo)
 	ma_apply_mask(bo->ma); /* aply MASKSEQ and eliminate columns consisting of only gaps */
 	ma_filter(bo->ma, bo->is_collapse_splice, bo->qual_thres, bo->is_mask_lss);
 
+	FILE* f_filtalign = fopen("filtalign.fa", "w");
+	tr_align_output(f_filtalign, bo->ma);
+	fclose(f_filtalign);
+
 	tma = ma_trans_align(bo->ma, 0);
 	if (tma == 0) {
 		fprintf(stderr, "<best_core> fail to translate the alignment. Is it a valid coding alignment?\n");
