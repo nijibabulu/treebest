@@ -119,6 +119,11 @@ Tree *best_core(BestConfig *bo)
 	/* mask alignment */
 	ma_apply_mask(bo->ma); /* aply MASKSEQ and eliminate columns consisting of only gaps */
 	ma_filter(bo->ma, bo->is_collapse_splice, bo->qual_thres, bo->is_mask_lss);
+	
+	if (!bo->ma->len) {
+		fprintf(stderr, "The filtered alignment has 0 columns. Cannot build a tree\n");
+		return 0;
+	}
 
 	FILE* f_filtalign = fopen("filtalign.fa", "w");
 	tr_align_output(f_filtalign, bo->ma);
