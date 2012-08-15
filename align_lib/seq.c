@@ -64,7 +64,7 @@ int read_fasta(FILE *fp, seq_t *seq, char *locus, char *comment)
 		}
 	}
 	if (c == '>') ungetc(c,fp);
-	seq->s[l] = 0;
+	if (l) seq->s[l] = 0;
 	seq->m = max; seq->l = l;
 	return l;
 }
