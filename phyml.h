@@ -23,6 +23,7 @@ typedef struct __PhymlConfig
 	double prob_dup;
 	double prob_loss_dup;
 	double prob_loss_spec;
+	double lk_scale;
 	Tree *ctree, *spec_tree;
 } PhymlConfig;
 

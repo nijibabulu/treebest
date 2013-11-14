@@ -44,6 +44,7 @@ BestConfig *best_init_option()
 	bo->prob_loss_spec = 0.10;
 	bo->prob_loss_dup = 0.20;
 	bo->prob_not_exist = 0.01;
+	bo->lk_scale = 1;
 	bo->is_skip_mmerge = NULL;
 	return bo;
 }
@@ -81,6 +82,7 @@ static PhymlConfig *init_PhymlConfig(BestConfig *bo)
 	pc->prob_loss_dup = bo->prob_loss_dup;
 	pc->prob_loss_spec = bo->prob_loss_spec;
 	pc->prob_not_exist = bo->prob_not_exist;
+	pc->lk_scale = bo->lk_scale;
 	return pc;
 }
 Tree *best_core(BestConfig *bo)
@@ -372,7 +374,7 @@ BestConfig *best_command_line_options(int argc, char *argv[])
 
 	bo = best_init_option();
 	skip_mmerge = 0;
-	while ((c = getopt(argc, argv, "qsrIDNgSPAF:c:C:f:p:o:k:a:d:l:L:b:Z:")) >= 0) {
+	while ((c = getopt(argc, argv, "qsrIDNgSPAF:c:C:f:p:o:k:a:d:l:L:b:Z:X:")) >= 0) {
 		switch (c) {
 			case 'q': bo->is_quiet = 1; break;
 			case 's': bo->is_sequenced_only = 1; break;
@@ -408,6 +410,7 @@ BestConfig *best_command_line_options(int argc, char *argv[])
 			case 'L': bo->prob_loss_spec = atof(optarg); break;
 			case 'b': bo->prob_not_exist = atof(optarg); break;
 			case 'Z': MIN_DIFF_LK = atof(optarg); break;
+			case 'X': bo->lk_scale = atof(optarg); break;
 		}
 	}
 	if (argc == optind) return 0;

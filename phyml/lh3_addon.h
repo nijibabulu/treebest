@@ -24,6 +24,7 @@ typedef struct
 	double log_loss_spec, log_present_spec;
 	double log_loss_dup, log_present_dup;
 	double ratio_cons, loglk_spec;
+	double lk_scale;
 	Tree *ctree, *spec_tree;
 	int is_NNI, min_branch;
 	void *hs; /* HashedSets* */

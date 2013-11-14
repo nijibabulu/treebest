@@ -198,6 +198,7 @@ void lh3_addon_init(arbre *tree, PhymlConfig *pc)
 	tree->lh3_tree.log_dup = log(pc->prob_dup); tree->lh3_tree.log_spec = log(1.0 - pc->prob_dup);
 	tree->lh3_tree.log_loss_spec = log(pc->prob_loss_spec); tree->lh3_tree.log_present_spec = log(1.0 - pc->prob_loss_spec);
 	tree->lh3_tree.log_loss_dup = log(pc->prob_loss_dup); tree->lh3_tree.log_present_dup = log(1.0 - pc->prob_loss_dup);
+	tree->lh3_tree.lk_scale = pc->lk_scale;
 	tree->lh3_tree.ctree = tree->lh3_tree.spec_tree = 0;
 	tree->lh3_tree.ratio_cons = 0.0;
 	tree->lh3_tree.log_spec = 0.0;

@@ -34,6 +34,7 @@ typedef struct
 	double prob_loss_dup;
 	double prob_loss_spec;
 	double prob_not_exist;
+	double lk_scale;
 	
 	Tree* is_skip_mmerge;
 } BestConfig;

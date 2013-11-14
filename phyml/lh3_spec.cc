@@ -240,7 +240,7 @@ double lh3_spec_cal_all_ratio(arbre *tree)
 			+ (tree->n_otu + 2 * tree->lh3_tree.spec_tree->n_leaf - 2 - 4 * tmp->cur_spec.tot_dup + tmp->cur_spec.tot_dup_loss)
 				* tree->lh3_tree.log_present_spec
 			+ (4 * tmp->cur_spec.tot_dup - tmp->cur_spec.tot_dup_loss) * tree->lh3_tree.log_present_dup;
-	return tree->lh3_tree.loglk_spec;
+	return tree->lh3_tree.loglk_spec * tree->lh3_tree.lk_scale;
 }
 
 #endif
