@@ -26,7 +26,7 @@ Matrix *tr_read_matrix(FILE *fp)
 		mat->name[i] = (char*)malloc(sizeof(char) * (strlen(name) + 1));
 		strcpy(mat->name[i], name);
 		for (j = 0; j < mat->count; ++j) {
-			fscanf(fp, "%f", &x);
+			fscanf(fp, "%lf", &x);
 			mat->dist[j * mat->count + i] = x;
 		}
 		mat->dist[i * mat->count + i] = 0.0;

@@ -95,7 +95,7 @@ void tr_align_output(FILE *fp, const MultiAlign *ma)
 }
 void tr_align_aln_output(FILE *fp, const MultiAlign *ma)
 {
-	int max_name_len = 0;
+	unsigned int max_name_len = 0;
 	char format[20];
 	int i, j, k, len;
 	char *seq;

@@ -20,7 +20,7 @@ Tree *tr_build_tree_from_align(MultiAlign *ma, int n_cons, Tree **cons, int init
 /* core function in building a tree */
 Tree *tr_build_tree(Task *task)
 {
-	int n, k;
+	int k;
 	Tree *tree;
 	int is_nucl, n_spec;
 	MultiAlign *ma_bak = 0;
@@ -56,7 +56,6 @@ Tree *tr_build_tree(Task *task)
 			return 0;
 		}
 	}
-	n = task->aln->n;
 	n_spec = tr_is_has_spec(task->aln, task->spec_tree);
 	task->is_sdi_root = (n_spec > 2)? 1 : 0;
 	if (n_spec == 0) fprintf(stderr, "[tr_build_tree] no species information is available\n");
@@ -177,14 +176,13 @@ Tree *tr_build_tree_from_align(MultiAlign *ma, int n_cons, Tree **cons, int init
 {
 	Tree *tree;
 	Matrix *mat;
-	int is_nucl;
 	extern void ma_cal_nucl_aux(Matrix *mat, const MultiAlign *ma, int is_rand, int dist_type, Matrix *mat_dn);
 
 	assert(ma);
 	if (n_cons) assert(cons);
 	mat = ma_init_small_matrix(ma);
 
-	is_nucl = (dist_type == DIST_DN || dist_type == DIST_DS || dist_type == DIST_DM)? 1 : 0;
+	//is_nucl = (dist_type == DIST_DN || dist_type == DIST_DS || dist_type == DIST_DM)? 1 : 0;
 	if (dist_type != DIST_DM) {
 		DistParam *dp;
 		dp = ma_alloc_DistParam(dist_type);
