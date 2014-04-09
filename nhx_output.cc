@@ -78,7 +78,7 @@ inline int string_nhx_node(char *str, const Tree *t)
 		if (c != 'N') { /* duplication flag is defined */
 			p += sprintf(p, ":D=%c", (c == 'D')? 'Y' : 'N'); /* whether duplication? */
 			if (c == 'D') {
-				p += sprintf(p, ":SIS=%d", s->sis);
+				p += sprintf(p, ":SIS=%.2f", s->sis);
 				if (!s->is_confirmed_dup) p += sprintf(p, ":DD=Y"); /* Dubious Duplication */
 			}
 		}

@@ -75,7 +75,7 @@ void tr_flag_confirmed(Tree *tree, const Tree *spec)
 				if (q[k] && r[k]) ++c1;
 				if (q[k] || r[k]) ++c2;
 			}
-			SDIptr(p)->sis = (int)(100.0 * c1 / c2 + 0.5);
+			SDIptr(p)->sis = 100.0 * c1 / c2;
 	 	}
 	}
 	for (i = 0; i < m; ++i)
