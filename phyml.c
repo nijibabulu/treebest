@@ -458,6 +458,7 @@ PhymlConfig *phyml_init_config()
 	pc->prob_loss_spec = 0.10;
 	pc->ctree = 0;
 	pc->spec_tree = 0;
+	pc->lk_scale = 1.0;
 	return pc;
 }
 void phyml_free_config(PhymlConfig *pc)
