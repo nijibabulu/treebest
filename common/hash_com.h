@@ -194,7 +194,7 @@ inline TYPE *__lih_hash_erase_aux(TYPE *vkp, size_t m, KeyType key)
 	TYPE *p;
 	p = __lih_hash_search_aux(vkp, m, key);
 	if (p && !p->isempty) {
-		if (p->isdel) return false;
+		if (p->isdel) return NULL;
 		p->isdel = true;
 		return p;
 	} else return 0;
