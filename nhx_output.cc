@@ -32,7 +32,7 @@ static int string_estimate_string_len(const Tree *tree, int out_flag)
 		if (p->d > 1e-30) len += 1 + 17; // ":"dist
 		if ((out_flag & OUTPUT_SDI) && SDIptr(p)) {
 			s = SDIptr(p);
-			len += 17; // ":D=Y:SIS=100:DD=Y"
+			len += 28; // ":D=Y:SIS=100:DCS=0.1234:DD=Y"
 			if (spec(p) && spec(p)->name) {
 				len += 3 + strlen(spec(p)->name); // ":S="spec
 				if (s->n_lost) {
@@ -78,7 +78,7 @@ inline int string_nhx_node(char *str, const Tree *t)
 		if (c != 'N') { /* duplication flag is defined */
 			p += sprintf(p, ":D=%c", (c == 'D')? 'Y' : 'N'); /* whether duplication? */
 			if (c == 'D') {
-				p += sprintf(p, ":SIS=%.2f", s->sis);
+				p += sprintf(p, ":SIS=%d:DCS=%.4f", int(100.0*s->sis+0.5), s->sis);
 				if (!s->is_confirmed_dup) p += sprintf(p, ":DD=Y"); /* Dubious Duplication */
 			}
 		}
