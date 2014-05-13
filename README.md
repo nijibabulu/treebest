@@ -24,6 +24,6 @@ Other changes include:
 There is a single branch where all the development goes. The version number stated in the source code (1.9.2) is not maintained.
 
 Tags are used to point at specific versions:
-* lh3 (currently 2a4fe3): when Heng Li handed-over the code to Ensembl Compara
+* lh3 (currently 2a4fe3563e09ff069d319c9987ad4354b984b70f): when Heng Li handed-over the code to Ensembl Compara
 * albert (currently 5e20c4): changes made by [Albert Vilella](https://sites.google.com/site/avilella/)
 * ensembl\_production (currently 24637d): the version currently used for Ensembl's production
