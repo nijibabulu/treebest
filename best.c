@@ -36,6 +36,7 @@ BestConfig *best_init_option()
 	bo->is_phyml_cons = 0;
 	bo->n_cat = 2;
 	bo->qual_thres = 11;
+	bo->only_filter = 0;
 	bo->prefix = 0;
 	bo->output_fn = 0;
 	bo->kappa = -1.0;
@@ -130,6 +131,9 @@ Tree *best_core(BestConfig *bo)
 	FILE* f_filtalign = fopen("filtalign.fa", "w");
 	tr_align_output(f_filtalign, bo->ma);
 	fclose(f_filtalign);
+	if (bo->only_filter) {
+		return 0;
+	}
 
 	tma = ma_trans_align(bo->ma, 0);
 	if (tma == 0) {
@@ -385,7 +389,11 @@ BestConfig *best_command_line_options(int argc, char *argv[])
 			case 'S': bo->is_phyml_spec = 0; break;
 			case 'A': bo->is_phyml_cons = 1; break;
 			case 'P': bo->is_phyml = 0; break;
-			case 'F': bo->qual_thres = atoi(optarg); break;
+			case 'F': if (*optarg == 'x') {
+					  bo->only_filter = 1;
+					  optarg++;
+				  }
+				  bo->qual_thres = atoi(optarg); break;
 			case 'c': bo->n_cat = atoi(optarg); break;
 			case 'C': fp = tr_get_fp(optarg);
 					  bo->ctree = tr_parse_first(fp);

@@ -25,6 +25,7 @@ typedef struct
 	int is_mask_lss;
 	int is_quiet;
 	int qual_thres;
+	int only_filter;
 
 	/* PHYML related, passed to PhymlConfig */
 	int n_cat;
