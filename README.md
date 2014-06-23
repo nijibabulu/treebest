@@ -23,9 +23,9 @@ Other changes include:
 
 ## Branches and tags
 
-There is a single branch where all the development goes. The version number stated in the source code (1.9.2) is not maintained.
+There is a single branch (master) where all the development goes. The version number stated in the source code (1.9.2) is not maintained.
 
 Tags are used to point at specific versions:
 * lh3: when Heng Li handed-over the code to Ensembl Compara
 * albert: changes made by Albert Vilella
-* ensembl\_production: the version currently used for Ensembl's production
+* ensembl\_production\_XX: the version used for the production of Ensembl version XX
