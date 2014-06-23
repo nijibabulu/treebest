@@ -3,7 +3,7 @@ CXX=		g++
 CFLAGS=		-W -Wall -O2 -fomit-frame-pointer #-pg
 CXXFLAGS=	$(CFLAGS)
 YFLAGS= 
-DFLAGS=		-DUSE_GCC -DHAVE_PHYML -DLH3_ADDON # for phyml
+DFLAGS=		-DUSE_GCC -DHAVE_PHYML -DLH3_ADDON -DYYMAXDEPTH=100000 # for phyml and the newick parser
 VERSION=	1.9.2
 NJVERSION=	-DTR_VERSION="\"$(VERSION)\"" -DTR_BUILD=\"`date +%d%b%Y`\"
 LEX=		flex
