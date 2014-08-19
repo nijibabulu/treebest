@@ -99,7 +99,7 @@ Tree *best_core(BestConfig *bo)
 
 	if (!bo->ma->is_nucl) {
 		fprintf(stderr, "<best_core> input is not a nucleotide alignment.\n");
-		return 0;
+		exit(1);
 	}
 
 	/* initilization */
@@ -124,7 +124,7 @@ Tree *best_core(BestConfig *bo)
 	
 	if (!bo->ma->len) {
 		fprintf(stderr, "The filtered alignment has 0 columns. Cannot build a tree\n");
-		return 0;
+		exit(1);
 	}
 
 	FILE* f_filtalign = fopen("filtalign.fa", "w");
@@ -135,7 +135,7 @@ Tree *best_core(BestConfig *bo)
 	if (tma == 0) {
 		fprintf(stderr, "<best_core> fail to translate the alignment. Is it a valid coding alignment?\n");
 		ma_free_nucl_data();
-		return 0;
+		exit(1);
 	}
 
 	n_spec = tr_is_has_spec(bo->ma, bo->stree);
