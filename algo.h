@@ -1,7 +1,6 @@
 #ifndef ALGORITHM_H_
 #define ALGORITHM_H_
 
-#define ALGO_LOG2 0.69314718
 #ifndef ALGO_EQUAL
 #define ALGO_EQUAL(a,b) ((a)=(b))
 #endif /* ALGO_EQUAL */
@@ -12,6 +11,10 @@
 
 #ifdef ALGO_TYPE
 #ifdef ALGO_QSORT
+
+#include <math.h>
+#include <stdlib.h>
+
 typedef struct
 {
 	size_t left,right;
@@ -19,16 +22,12 @@ typedef struct
 
 static void algo_qsort(ALGO_TYPE a[], size_t n)
 {
-	extern double log(double);
-	extern void *malloc(size_t);
-	extern void free();
-
 	size_t s, t, i, j, k;
 	ALGO_QSortStack *top, *stack;
 	ALGO_TYPE rp, swap_tmp;
 
 	if (n == 0) return;
-	stack = (ALGO_QSortStack*)malloc(sizeof(ALGO_QSortStack) * (size_t)((sizeof(size_t)*log(n)/ALGO_LOG2)+2));
+	stack = (ALGO_QSortStack*)malloc(sizeof(ALGO_QSortStack) * (size_t)((sizeof(size_t)*log(n)/M_LN2)+2));
 
 	top = stack; s = 0; t = n-1;
 	while (1) {
