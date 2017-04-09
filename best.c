@@ -259,7 +259,6 @@ Tree *best_core(BestConfig *bo)
 	} else {
 		t_final = bo->is_skip_mmerge;
 	}
-	if (bo->is_debug) fprintf(stderr, "tree merge: %.2fs\n", (double)(clock() - c_begin) / CLOCKS_PER_SEC);
 
 	if (bo->is_phyml) { /* calculate branch length */
 		char *s;
