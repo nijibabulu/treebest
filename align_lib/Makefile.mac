@@ -6,7 +6,7 @@ LIBOBJS=	aa2nt.o aa2nt_local.o transaln.o \
 			common_align.o \
 			seq.o table.o align.o \
 			pwalign.o
-EXEOBJS=	pwalign_main.o ../common/getopt.o ../common/mem.o
+EXEOBJS=	pwalign_main.o ../common/mem.o
 SMEXEOBJS=	make_matrix.o
 INCLUDES=	-I..
 

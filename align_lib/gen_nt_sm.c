@@ -2,10 +2,7 @@
 #ifdef ALN_MATRIX_DEBUG
 #include <stdio.h>
 #include <stdlib.h>
-
-extern int getopt(int nargc, char * const *nargv, const char *ostr);
-extern int optind, opterr;
-extern char *optarg;
+#include <getopt.h>
 
 #endif
 
