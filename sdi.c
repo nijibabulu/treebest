@@ -188,6 +188,8 @@ int tr_SDI(Tree *tree, const Tree *spec, Tree **links)
 			s->type = 'N'; goto end_loop;
 		}
 		/* now, p->n == 2 stands */
+		/* otherwise this means that there are some unary nodes in the input tree */
+		assert(p->n == 2);
 		if (spec(p->node[0]) == 0 || spec(p->node[1]) == 0) {
 			s->type = 'N';
 		} else if (q != spec(p->node[0]) && q != spec(p->node[1]) && q->n <= 2) { /* non-multi spec node */
