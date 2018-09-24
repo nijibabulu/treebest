@@ -29,3 +29,25 @@ Tags are used to point at specific versions:
 * lh3: when Heng Li handed-over the code to Ensembl Compara
 * albert: changes made by Albert Vilella
 * ensembl\_production\_XX: the version used for the production of Ensembl version XX
+
+## Pre-git history
+
+Treebest used to be kept in a Subversion repository at
+http://sourceforge.net/p/treesoft/code/HEAD/tree/branches/lh3/ but Heng
+Li's GitHub repository (the parent of this repository) has collapsed the
+whole history in just 1 commit.
+
+There is a complete import of the Subversion repository at
+https://github.com/muffato/treebest . You can attach it to your checkout to
+see
+
+```
+git remote add history https://github.com/muffato/treebest
+git fetch history
+git replace --graft 2a4fe3563e09ff069d319c9987ad4354b984b70f f5bbfb5c2e591ae8a176da960fb0d9edc01f1a96
+```
+This will pretend that the parent of the commit
+2a4fe3563e09ff069d319c9987ad4354b984b70f is
+f5bbfb5c2e591ae8a176da960fb0d9edc01f1a96. _replace_ references are
+understood by all git tools, incl. `git log`.
+
