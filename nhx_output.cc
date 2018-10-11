@@ -43,7 +43,7 @@ static int string_estimate_string_len(const Tree *tree, int out_flag)
 				}
 			}
 			if (p->tree_index) {
-				len += 6; //:T=100
+				len += 6; // ":T=100"
 			}
 			
 		}
@@ -104,7 +104,7 @@ inline int string_nhx_node(char *str, const Tree *t)
 				p += sprintf(p, ":%s=%s", iter->key, iter->val);
 	}
 	p += sprintf(p, "]");
-	if (p - 6 == str) { /* strip [&&NHX] */
+	if (p - 7 == str) { /* strip [&&NHX] */
 		p = str; *str = '\0';
 	}
 	return p - str;
