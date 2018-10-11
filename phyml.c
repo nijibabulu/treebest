@@ -59,7 +59,7 @@ int phyml_usage()
 	fprintf(stderr, "         -S          use a species tree to guide tree building\n");
 	fprintf(stderr, "         -f FILE     species tree                         [TreeFam species tree]\n");
 	fprintf(stderr, "         -d FLOAT    duplication probability                              [0.15]\n");
-	fprintf(stderr, "         -l FLOAT    porbability of a loss following a speciation         [0.10]\n");
+	fprintf(stderr, "         -l FLOAT    probability of a loss following a speciation         [0.10]\n");
 	fprintf(stderr, "         -L FLOAT    probability of a loss following a duplication        [0.20]\n");
 	fprintf(stderr, "         -C FILE     constraining tree                                    [NULL]\n");
 	fprintf(stderr, "         -p FLOAT    prob. of the presence of an inconsistent branch      [0.01]\n\n");

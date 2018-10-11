@@ -359,8 +359,8 @@ static int best_usage()
 	fprintf(stderr, "         -k FLOAT|e  tv/ts ratio (kappa), 'e' for estimatinig           [e]\n");
 	fprintf(stderr, "         -a FLOAT|e  alpha parameter for Gamma distribution           [1.0]\n");
 	fprintf(stderr, "         -d FLOAT    duplication probability                         [0.15]\n");
-	fprintf(stderr, "         -l FLOAT    porbability of a loss following a speciation    [0.10]\n");
-	fprintf(stderr, "         -L FLOAT    porbability of a loss following a duplication   [0.20]\n");
+	fprintf(stderr, "         -l FLOAT    probability of a loss following a speciation    [0.10]\n");
+	fprintf(stderr, "         -L FLOAT    probability of a loss following a duplication   [0.20]\n");
 	fprintf(stderr, "         -b FLOAT    prob. of the presence of an inconsistent branch [0.01]\n\n");
 	fprintf(stderr, "Note:    If you use this module in your work, please cite:\n\n");
 	fprintf(stderr, "         Guindon S. and Gascuel O. (2003) A simple, fast, and accurate\n");
