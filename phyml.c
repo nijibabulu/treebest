@@ -86,7 +86,7 @@ int phyml_task(int argc, char *argv[])
 	fpout = stdout;
 	phyml_init();
 	pc = phyml_init_config();
-	while ((c = getopt(argc, argv, "nt:m:k:a:i:c:sF:o:Ngb:p:C:Sd:l:L:f:Z:")) >= 0) {
+	while ((c = getopt(argc, argv, "nt:m:k:a:i:c:sF:o:Ngb:p:C:Sd:l:L:f:Z:X:")) >= 0) {
 		switch (c) {
 			case 'S': is_spec = 1; break;
 			case 'f': fp = tr_get_fp(optarg);
@@ -132,6 +132,7 @@ int phyml_task(int argc, char *argv[])
 			case 'F': cut_off = atoi(optarg); break;
 			case 's': pc->is_stat = 1; break;
 			case 'Z': MIN_DIFF_LK = atof(optarg); break;
+			case 'X': pc->lk_scale = atof(optarg); break;
 		}
 	}
 	/* finalise PhymlConfig structure */
