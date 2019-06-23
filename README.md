@@ -28,9 +28,11 @@ Other changes include:
 
 There is a single branch (master) where all the development goes. The version number stated in the source code (1.9.2) is not maintained.
 
-ensembl\_production\_XX tags are used to refer to the version used for the
+`ensembl_production_XX` tags are used to refer to the version used for the
 production of Ensembl version XX. Due to deployment constraints, these tags
 may not include the latest changes of the master branch.
+Instead, we provide `ensembl_release_candidate_Y` tags, Y starting from 1, for
+the "next" version we will deploy in production.
 
 ## Pre-git history
 
