@@ -4,6 +4,9 @@ treebest
 TreeBeST: Tree Building guided by Species Tree (Ensembl Compara modifications)
 
 This repository holds the necessary changes of [Heng Li's version](https://github.com/lh3/treebest) to run the latest Ensembl Compara pipeline.
+Ensembl is **not** the official maintainer of this software.
+Pull-requests can still be submitted, but we will only accept them if they
+can provide a benefit to Ensembl.
 
 You can find more documentation on SourceForge: (http://treesoft.sourceforge.net/treebest.shtml)
 
@@ -26,7 +29,8 @@ Other changes include:
 There is a single branch (master) where all the development goes. The version number stated in the source code (1.9.2) is not maintained.
 
 ensembl\_production\_XX tags are used to refer to the version used for the
-production of Ensembl version XX.
+production of Ensembl version XX. Due to deployment constraints, these tags
+may not include the latest changes of the master branch.
 
 ## Pre-git history
 
