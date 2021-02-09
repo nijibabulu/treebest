@@ -191,10 +191,10 @@ Tree **cpp_get_spec_links(const Tree *tree, const Tree *spec)
 	sq = 0;
 	for (i = 0; i < n_tree_leaf; ++i) {
 		sq = tree_leaf[i]->name;
-		for (sp = sq + strlen(sq) - 1; sp >= sq; --sp)
+		for (sp = sq ; *sp; ++sp)
 			if (*sp == '_') break;
 		//++sp; /* sp is the species name if found */
-		if (sp != sq) /* match species name */ {
+		if (*sp != '\0') /* match species name */ {
             *sp = '\0';
 			hash->find(sq, links + i);
             *sp = '_';
