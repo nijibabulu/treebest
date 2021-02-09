@@ -55,6 +55,8 @@ double MDBL_MAX;
 double MDBL_MIN;
 int    POWELL_ITMAX;
 double LINMIN_TOL;
+double PROP_STEP;
+double ROUND_MAX;
 
 /*********************************************************/
 /* NUMERICAL RECIPES ROUTINES FOR COMPUTING C(n,k)       */

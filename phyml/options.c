@@ -15,9 +15,9 @@ the GNU public licence.  See http://www.opensource.org for details.
 #include "models.h"
 #include "free.h"
 
-int  T_MAX_FILE;
-double MDBL_MIN;
-double UNLIKELY;
+extern int  T_MAX_FILE;
+extern double MDBL_MIN;
+extern double UNLIKELY;
 
 #define BOLD      "\033[00;01m"
 #define FLAT      "\033[00;00m"

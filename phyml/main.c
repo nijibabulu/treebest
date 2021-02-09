@@ -22,7 +22,7 @@ the GNU public licence.  See http://www.opensource.org for details.
 
 #ifdef PHYML
 
-int T_MAX_FILE;
+extern int T_MAX_FILE;
 
 int main(int argc, char **argv)
 {

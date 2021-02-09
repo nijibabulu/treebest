@@ -15,8 +15,8 @@ the GNU public licence.  See http://www.opensource.org for details.
 #include "ml.h"
 #include "free.h"
 
-double UNLIKELY;
-double ROUND_MAX;
+extern double UNLIKELY;
+extern double ROUND_MAX;
 extern double MIN_DIFF_LK;
 
 /*********************************************************/

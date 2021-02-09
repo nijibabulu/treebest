@@ -18,33 +18,33 @@ the GNU public licence.  See http://www.opensource.org for details.
 #include "simu.h"
 
 
-int    BRENT_ITMAX;
-double BRENT_CGOLD;
-double BRENT_ZEPS;
-double MNBRAK_GOLD;
-double MNBRAK_GLIMIT;
-double MNBRAK_TINY;
-double ALPHA_MIN;
-double ALPHA_MAX;
-double BL_MIN;
-double BL_START;
-double BL_MAX;
+extern int    BRENT_ITMAX;
+extern double BRENT_CGOLD;
+extern double BRENT_ZEPS;
+extern double MNBRAK_GOLD;
+extern double MNBRAK_GLIMIT;
+extern double MNBRAK_TINY;
+extern double ALPHA_MIN;
+extern double ALPHA_MAX;
+extern double BL_MIN;
+extern double BL_START;
+extern double BL_MAX;
 extern double MIN_DIFF_LK;
-double GOLDEN_R;
-double GOLDEN_C;
-int    T_MAX_FILE;
-int    T_MAX_LINE;
-int    T_MAX_NAME;
-int    T_MAX_SEQ;
-int    N_MAX_INSERT;
-int    N_MAX_OTU;
-double UNLIKELY;
-double NJ_SEUIL;
-int    MAX_TOPO_DIST;
-double DIST_MAX;
-int    LIM_SCALE;
-double AROUND_LK;
-double PROP_STEP;
+extern double GOLDEN_R;
+extern double GOLDEN_C;
+extern int    T_MAX_FILE;
+extern int    T_MAX_LINE;
+extern int    T_MAX_NAME;
+extern int    T_MAX_SEQ;
+extern int    N_MAX_INSERT;
+extern int    N_MAX_OTU;
+extern double UNLIKELY;
+extern double NJ_SEUIL;
+extern int    MAX_TOPO_DIST;
+extern double DIST_MAX;
+extern int    LIM_SCALE;
+extern double AROUND_LK;
+extern double PROP_STEP;
 
 
 /*********************************************************/

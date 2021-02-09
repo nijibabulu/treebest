@@ -22,10 +22,10 @@ the GNU public licence.  See http://www.opensource.org for details.
 #include "../algo.h"
 #endif
 
-int    LIM_SCALE;
-double LIM_SCALE_VAL;
-double MDBL_MAX;
-double MDBL_MIN;
+extern int    LIM_SCALE;
+extern double LIM_SCALE_VAL;
+extern double MDBL_MAX;
+extern double MDBL_MIN;
 
 /*********************************************************/
 
