@@ -343,7 +343,7 @@ int tr_sdi_task(int argc, char *argv[])
 					  if (fp_spec) {
 						  spec_tree = tr_parse_first(fp_spec);
 						  fclose(fp_spec);
-						  cpp_post_spec_tree(spec_tree, 0);
+						  //cpp_post_spec_tree(spec_tree, 0);
 					  }
 					  break;
 			case 'l': name = tr_get_list_str(optarg, &k); break;
