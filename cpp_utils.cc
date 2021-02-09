@@ -193,9 +193,12 @@ Tree **cpp_get_spec_links(const Tree *tree, const Tree *spec)
 		sq = tree_leaf[i]->name;
 		for (sp = sq + strlen(sq) - 1; sp >= sq; --sp)
 			if (*sp == '_') break;
-		++sp; /* sp is the species name if found */
-		if (sp != sq) /* match species name */
-			hash->find(sp, links + i);
+		//++sp; /* sp is the species name if found */
+		if (sp != sq) /* match species name */ {
+            *sp = '\0';
+			hash->find(sq, links + i);
+            *sp = '_';
+        }
 	}
 	free(tree_leaf);
 	free(spec_leaf);
