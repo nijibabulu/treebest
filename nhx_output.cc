@@ -126,10 +126,10 @@ static int tr_tree_string_aux(char *str, const Tree *t)
 	p += sprintf(p, "(");
 	p += tr_tree_string_aux(p, t->node[0]);
 	for (i = 1; i < t->n; ++i) { /* output children recursively */
-		p += sprintf(p, ",\n");
+		p += sprintf(p, ",");
 		p += tr_tree_string_aux(p, t->node[i]);
 	}
-	p += sprintf(p, "\n)");
+	p += sprintf(p, ")");
 	if (t->name) p += sprintf(p, "%s", t->name);
 	if (t->d > -1e30) /* if reasonable length, output branch length */
 		p += sprintf(p, ":%g", t->d);
